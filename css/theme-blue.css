@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,500,600,700&subset=latin,latin-ext);
+/*@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,500,600,700&subset=latin,latin-ext);*/
 @import "jquery/jquery-ui.min.css";
 @import "bootstrap/bootstrap.min.css";
 @import "fontawesome/font-awesome.min.css";
@@ -13,6 +13,7 @@
 @import "rickshaw/rickshaw.css";
 @import "dropzone/dropzone.css";
 @import "animate/animate.min.css";
+@import "fonts/fonts.css";
 
 /* PREDEFINED CLASSES */
 .clearfix {
@@ -47,7 +48,7 @@ body {
   position: relative;
   font-family: 'Open Sans', sans-serif;
   font-size: 12px;
-  color: #656d78;
+  color: #22262e;
   overflow-x: hidden;
 }
 .body-full-height {
@@ -81,7 +82,7 @@ body {
   float: left;
   min-height: 100%;
   position: relative;
-  background: #33414e;
+  background: #f5f5f5 url('../img/bg.png') left top repeat;
   /* SIDEBAR */
   /* END SIDEBAR */
   /* CONTENT */
@@ -94,6 +95,8 @@ body {
   float: left;
   position: relative;
   z-index: 3;
+  min-height: 100%;
+  background: #33414e;
 }
 .page-container .page-sidebar.page-sidebar-fixed {
   position: fixed;
@@ -1413,6 +1416,7 @@ a.list-group-item:focus {
 .panel {
   float: left;
   width: 100%;
+  min-height: 500px;
   -moz-border-radius: 0px;
   -webkit-border-radius: 0px;
   border-radius: 0px;
@@ -1591,6 +1595,7 @@ a.list-group-item:focus {
   display: block;
   float: left;
   color: #434a54;
+  max-width: 80%;
 }
 .panel .panel-footer {
   background: #F5F5F5;
@@ -1598,6 +1603,8 @@ a.list-group-item:focus {
   border-top: 1px solid #E3E3E3;
   line-height: 30px;
   padding: 10px;
+  position: relative;
+  bottom: 0;
 }
 .panel-default .panel-heading,
 .panel-primary .panel-heading,
@@ -1673,6 +1680,29 @@ ul.panel-controls > li > a {
   -ms-transition: all 200ms ease;
   -o-transition: all 200ms ease;
   transition: all 200ms ease;
+}
+ul.panel-controls > li > button {
+  margin-left: 3px;
+}
+ul.panel-controls > li > button.control-primary {
+  color: #33414e;
+  border-color: #33414e;
+}
+ul.panel-controls > li > button.control-success {
+  color: #95b75d;
+  border-color: #95b75d;
+}
+ul.panel-controls > li > button.control-info {
+  color: #1caf9a;
+  border-color: #1caf9a;
+}
+ul.panel-controls > li > button.control-warning {
+  color: #1caf9a;
+  border-color: #1caf9a;
+}
+ul.panel-controls > li > button.control-danger {
+  color: #E04B4A;
+  border-color: #E04B4A;
 }
 ul.panel-controls > li > a.control-primary {
   color: #33414e;
@@ -1940,12 +1970,12 @@ ul.panel-controls > li > .dropdown-menu:before {
 /* BUTTONS */
 .btn {
   font-size: 12px;
-  padding: 4px 15px;
+  padding: 6px 10px;
   line-height: 20px;
   font-weight: 400;
   -moz-border-radius: 0px;
   -webkit-border-radius: 0px;
-  border-radius: 0px;
+  border-radius: 3px;
   -webkit-transition: all 200ms ease;
   -moz-transition: all 200ms ease;
   -ms-transition: all 200ms ease;
@@ -1960,7 +1990,7 @@ ul.panel-controls > li > .dropdown-menu:before {
 .btn.btn-sm,
 .btn-group-sm > .btn {
   font-size: 11px;
-  padding: 2px 10px;
+  padding: 2px 6px;
 }
 .btn.btn-xs,
 .btn-group-xs > .btn {
@@ -2076,7 +2106,7 @@ ul.panel-controls > li > .dropdown-menu:before {
 .btn .fa,
 .btn .glyphicon {
   font-size: 14px;
-  margin-right: 5px;
+  margin-right: 1px;
 }
 .btn.btn-rounded {
   background: transparent;
@@ -4908,15 +4938,15 @@ td.dataTables_empty {
 /* end errors */
 /* SETTINGS */
 .theme-settings {
-  position: fixed;
+  position: absolute;
   right: -200px;
-  top: 200px;
+  top: 50px;
   -webkit-transition: all 400ms ease;
   -moz-transition: all 400ms ease;
   -ms-transition: all 400ms ease;
   -o-transition: all 400ms ease;
   transition: all 400ms ease;
-  z-index: 3;
+  z-index: 0;
 }
 .theme-settings .ts-button {
   position: absolute;
@@ -7327,4 +7357,21 @@ li.ext_zip {
 }
 .x-navigation-minimized .xn-logo{
 display:none;
+}
+.borderfoto{
+  padding: 2px;
+  border: thin solid #3498DB;
+  vertical-align: middle;
+}
+img { 
+    image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
+    image-rendering: -moz-crisp-edges;          /* Firefox                        */
+    image-rendering: -o-crisp-edges;            /* Opera                          */
+    image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+    image-rendering: pixelated; /* Chrome */
+    image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
+    -ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
+}
+.kolomtabelaktif{
+  background: #E9E9E9;
 }

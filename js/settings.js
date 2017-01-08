@@ -1,15 +1,7 @@
 var site_settings = '<div class="ts-button">'
-        +'<span class="fa fa-cogs fa-spin"></span>'
+        +'<span class="fa fa-cogs"></span>'
     +'</div>'
     +'<div class="ts-body">'
-	    +'<div class="ts-title">Themes</div>'
-        +'<div class="ts-themes">'
-            +'<a href="#" class="active" data-theme="css/theme-default.css"><img src="img/themes/default.jpg"/></a>'            
-            +'<a href="#" data-theme="css/theme-brown.css"><img src="img/themes/brown.jpg"/></a>'
-            +'<a href="#" data-theme="css/theme-blue.css"><img src="img/themes/blue.jpg"/></a>'                        
-            +'<a href="#" data-theme="css/theme-white.css"><img src="img/themes/light.jpg"/></a>'            
-            +'<a href="#" data-theme="css/theme-black.css"><img src="img/themes/black.jpg"/></a>'
-        +'</div>'
 		+'<div class="ts-title">Layout</div>'
         +'<div class="ts-row">'
             +'<label class="check"><input type="radio" class="iradio" name="st_layout_boxed" value="0" checked/> Full Width</label>'
@@ -49,7 +41,7 @@ $(document).ready(function(){
 
     /* Default settings */
     var theme_settings = {
-        st_head_fixed: 0,
+        st_head_fixed: 1,
         st_sb_fixed: 1,
         st_sb_scroll: 1,
         st_sb_right: 0,

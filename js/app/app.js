@@ -55,14 +55,30 @@ agungApp.controller('LEDController', function($scope, $http, socket) {
     $scope.pageClass = 'page-class';
     $scope.dataPerangkat = {};
     $scope.status = {};
-    $http.get('http://localhost:2016/perangkat').success(function(data){
+    $http.get('http://agungdp.agri.web.id:2016/perangkat').success(function(data){
         console.log(data);
         $scope.dataPerangkat = data;
     });
 
     $scope.changed = function(id, status){
-        console.log(id);
+        if(status){
+            status=1;
+        }else{
+            status=0;
+        }
         socket.emit('kendaliPerangkat', [parseInt(id), parseInt(status)]);
+        var sendData = {'id_perangkat':id,'status':status};
+        console.log($.param(sendData));
+        $http({
+            method  : 'PUT',
+            url     : 'http://agungdp.agri.web.id:2016/perangkat',
+            data    : $.param(sendData),
+            headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
+        }).success(function(data){
+            console.log(data);
+        }).error(function(e){
+            alert(':(');
+        });
     };
 
     $scope.knobData = [
