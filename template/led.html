@@ -1,0 +1,52 @@
+<div ng-controller="LEDController">
+    <ul class="breadcrumb">
+        <li><a href="#">Home</a></li>
+        <li class="active">LED</li>
+    </ul>
+    <div class="page-title">                    
+        <h2><span class="fa fa-arrow-circle-o-left"></span> Lampu</h2>
+    </div>
+
+    <div class="page-content-wrap">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">LED Status</h3>
+                        </div>
+                        <div class="panel-body">
+                            <form role="form" class="form-horizontal col-md-12">
+                                <div ng-repeat="perangkat in dataPerangkat" class="form-group">
+                                  <label class="col-md-2 control-label">{{ perangkat.deviceName }}</label>
+                                  <div class="col-md-10">
+                                    <toggle id="{{perangkat.deviceId}}" ng-model="perangkat.deviceStatus" ng-change="changed(perangkat.deviceId, 1)" onstyle="btn-success" offstyle="btn-danger"></toggle>
+                                  </div>
+                                </div>
+                              </form>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">PWM Write</h3>                          
+                        </div>                            
+                        <div class="panel-body wrapper">
+                            <form role="form" class="form-vertical col-md-12">
+                                <div ng-repeat="data in knobData" class="knob-example">
+                                  <div class="form-group">
+                                      <label class="col-md-2 control-label">LED 1</label>
+                                      <div class="col-md-4">
+                                            <knob knob-data="data.value" knob-options="data.options" ng-click="getVal(2)"></knob>
+                                             {{data.value}}
+                                      </div>
+                                  </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
