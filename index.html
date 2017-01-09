@@ -6,11 +6,14 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         
-        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="assets/images/raspi.png" type="image/x-icon" />
 
         <link rel="stylesheet" type="text/css" id="theme" href="css/theme-default.css"/>
         <link rel="stylesheet" type="text/css" id="theme" href="css/animasi.css"/>
         <link rel="stylesheet" type="text/css" id="theme" href="css/switch/angular-bootstrap-toggle.min.css"/>
+        <script src="js/plugins/jquery/jquery.min.js"></script>
+        <script src="js/plugins/jquery/jquery-ui.min.js"></script>
+        <script src="js/plugins/bootstrap/bootstrap.min.js"></script> 
         <script src="js/app/angular/angular.js"></script>
         <script src="js/app/angular/angular-route.js"></script>
         <script src="js/app/angular/angular-animate.js"></script>
@@ -47,17 +50,20 @@
                             </div>
                         </div>                                                                        
                     </li>
-                    <li class="xn-title">Navigation</li>                    
-                    <li class="active">
+                    <li class="xn-title">Monitoring</li>                    
+                    <li class="active" onclick="$(this).addClass('active');">
                         <a href="#/"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a>
                     </li>
                     <li onclick="$(this).addClass('active');">
                         <a href="#/PenggunaanDaya"><span class="fa fa-files-o"></span> <span class="xn-text">Penggunaan Daya</span></a>
                     </li>
                     <li onclick="$(this).addClass('active');">
-                        <a href="#"><span class="fa fa-file-text-o"></span> <span class="xn-text">Layouts</span></a>
+                        <a href="#/PanelSurya"><span class="fa fa-file-text-o"></span> <span class="xn-text">Panel Surya</span></a>
                     </li>
-                    <li class="xn-title">Components</li>                    
+                    <li onclick="$(this).addClass('active');">
+                        <a href="#/MonitoringLingkungan"><span class="fa fa-eye"></span> <span class="xn-text">Monitoring Lingkungan</span></a>
+                    </li>
+                    <li class="xn-title">Kendali</li>                    
                     <li onclick="$(this).addClass('active');">
                         <a href="#/LED"><span class="fa fa-cogs"></span> <span class="xn-text">LED</span></a>
                     </li>                    
@@ -86,50 +92,16 @@
                             <input type="text" name="search" placeholder="Search..."/>
                         </form>
                     </li>
-                    <li class="xn-icon-button pull-right">
-                        <a href="#" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out"></span></a>                        
-                    </li> 
                 </ul>
                        <div class="page {{ pageClass }}" ng-view></div>
             </div>
         </div>
 
-        <div class="message-box animated fadeIn" data-sound="alert" id="mb-signout">
-            <div class="mb-container">
-                <div class="mb-middle">
-                    <div class="mb-title"><span class="fa fa-sign-out"></span> Log <strong>Out</strong> ?</div>
-                    <div class="mb-content">
-                        <p>Are you sure you want to log out?</p>                    
-                        <p>Press No if youwant to continue work. Press Yes to logout current user.</p>
-                    </div>
-                    <div class="mb-footer">
-                        <div class="pull-right">
-                            <a href="pages-login.html" class="btn btn-success btn-lg">Yes</a>
-                            <button class="btn btn-default btn-lg mb-control-close">No</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <audio id="audio-alert" src="audio/alert.mp3" preload="auto"></audio>
-        <audio id="audio-fail" src="audio/fail.mp3" preload="auto"></audio>
-
-        <script src="/socket.io/socket.io.js"></script>
-        <script src="/js/app/main.js"></script>
-
-        <script type="text/javascript" src="js/plugins/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="js/plugins/jquery/jquery-ui.min.js"></script>
-        <script type="text/javascript" src="js/plugins/bootstrap/bootstrap.min.js"></script> 
-
         <script type='text/javascript' src='js/plugins/icheck/icheck.min.js'></script>
         <script type="text/javascript" src="js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
-        
         <script type="text/javascript" src="js/plugins/rangeslider/jQAllRangeSliders-min.js"></script>       
         <script type="text/javascript" src="js/plugins/knob/jquery.knob.min.js"></script>
-
         <script type="text/javascript" src="js/settings.js"></script>
-        
         <script type="text/javascript" src="js/plugins.js"></script>        
         <script type="text/javascript" src="js/actions.js"></script>
     </body>

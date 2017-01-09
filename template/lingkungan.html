@@ -1,0 +1,52 @@
+<div ng-controller="LingkunganController">
+	<ul class="breadcrumb">
+        <li><a href="#">Home</a></li>
+        <li class="active">Monitoring Lingkungan</li>
+    </ul>
+    <div class="page-title">                    
+        <h2><span class="fa fa-eye"></span> Monitoring Suhu dan Kelembaban</h2>
+    </div>
+
+    <div class="page-content-wrap">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Suhu Ruangan</h3>
+                            </div>
+                            <div class="panel-body">
+                                <canvas class="chart chart-line" chart-data="dataSuhu" chart-options="options" chart-labels="labels" chart-colors="colorSuhu"></canvas>
+                            </div>
+                        </div>
+                 		<div class="col-md-5 pull-right">                        
+                            <a href="#" class="tile tile-info">
+                                {{showSuhu}} Celcius
+                                <p>Realtime Suhu</p>                            
+                                <div class="informer informer-default dir-tr"></div>
+                            </a>                        
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Kelembaban Ruangan</h3>                          
+                            </div>                            
+                            <div class="panel-body">
+                                <canvas class="chart chart-line" chart-data="dataKelembaban" chart-options="options" chart-labels="labels" chart-colors="colorKelembaban"></canvas>
+                            </div>
+                        </div>
+                        <div class="col-md-5">                        
+                            <a href="#" class="tile tile-info">
+                                {{showKel}} RH
+                                <p>Realtime Kelembaban</p>                            
+                                <div class="informer informer-default dir-tr"></div>
+                            </a>                        
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+</div>
