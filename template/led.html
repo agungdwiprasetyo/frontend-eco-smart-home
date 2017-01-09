@@ -37,10 +37,9 @@
                                 <form role="form" class="form-vertical col-md-12">
                                     <div ng-repeat="data in knobData" class="knob-example">
                                       <div class="form-group">
-                                          <label class="col-md-2 control-label">LED 1</label>
+                                          <label class="col-md-2 control-label">{{data.nama}}</label>
                                           <div class="col-md-4">
                                                 <knob knob-data="data.value" knob-options="data.options"></knob>
-                                                 {{data.value}}
                                           </div>
                                       </div>
                                     </div>
