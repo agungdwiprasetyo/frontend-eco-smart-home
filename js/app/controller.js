@@ -164,7 +164,7 @@ contr.controller('LEDController', function($scope, $http, socket) {
     $scope.knobData = [
         {
             value: 100,
-            nama: 'LED 1',
+            nama: 'LED 6',
             options: {
                 fgColor: '#66CC66',
                 angleOffset: -125,
@@ -173,7 +173,7 @@ contr.controller('LEDController', function($scope, $http, socket) {
         },
         {
             value: 100,
-            nama: 'LED 2',
+            nama: 'LED 7',
             options: {
                 fgColor: '#66CC66',
                 angleOffset: -125,
@@ -182,7 +182,7 @@ contr.controller('LEDController', function($scope, $http, socket) {
         },
         {
             value: 100,
-            nama: 'LED 3',
+            nama: 'LED 8',
             options: {
                 fgColor: '#66CC66',
                 angleOffset: -125,
@@ -191,7 +191,7 @@ contr.controller('LEDController', function($scope, $http, socket) {
         },
         {
             value: 100,
-            nama: 'LED 4',
+            nama: 'LED 9',
             options: {
                 fgColor: '#66CC66',
                 angleOffset: -125,
