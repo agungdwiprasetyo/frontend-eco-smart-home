@@ -10,11 +10,26 @@
         <div class="row">
             <div class="col-md-6" id="bubble-chart">
 	          <div class="panel panel-default">
-	            <div class="panel-heading">Daya</div>
-	            <div class="panel-body">
-	              <canvas id="bubble" class="chart chart-bubble" chart-data="data" chart-options="options"></canvas>
+	            <div class="panel-heading">
+	            	<h3 class="panel-title"> Arus (mA)</h3>
 	            </div>
-	          </div>
+	            <div class="panel-body">
+	              <canvas id="hero-bar" class="chart chart-line" chart-data="dataAmpere" chart-options="options" chart-labels="labels"></canvas>
+	            </div>
+	          </div>                       
+	              <h2>Arus: {{showA}} mA</h2>
+	        </div>
+
+	        <div class="col-md-6" id="real">
+	        	<div class="panel panel-default">
+	        		<div class="panel-heading">
+	        			<h3 class="panel-title"> Tegangan (mV)</h3>
+	        		</div>
+	        		<div class="panel-body">
+	        			<canvas id="hero-bar" class="chart chart-line" chart-data="dataVolt" chart-options="options" chart-labels="labels"></canvas>
+	        		</div>
+	        	</div>
+	        		<h2>Tegangan: {{showV}} mV</h2>
 	        </div>
 		</div>
 	</div>

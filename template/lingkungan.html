@@ -6,7 +6,6 @@
     <div class="page-title">                    
         <h2><span class="fa fa-eye"></span> Monitoring Suhu dan Kelembaban</h2>
     </div>
-
     <div class="page-content-wrap">
             <div class="row">
                 <div class="col-md-12">
@@ -16,12 +15,12 @@
                                 <h3 class="panel-title">Suhu Ruangan</h3>
                             </div>
                             <div class="panel-body">
-                                <canvas class="chart chart-line" chart-data="dataSuhu" chart-options="options" chart-labels="labels" chart-colors="colorSuhu"></canvas>
+                                <canvas id="hero-bar" class="chart chart-line" chart-data="dataSuhu" chart-options="options" chart-labels="labels" chart-colors="colorSuhu"></canvas>
                             </div>
                         </div>
                  		<div class="col-md-5 pull-right">                        
                             <a href="#" class="tile tile-info">
-                                {{showSuhu}} Celcius
+                                {{showT}} Celcius
                                 <p>Realtime Suhu</p>                            
                                 <div class="informer informer-default dir-tr"></div>
                             </a>                        
@@ -34,12 +33,12 @@
                                 <h3 class="panel-title">Kelembaban Ruangan</h3>                          
                             </div>                            
                             <div class="panel-body">
-                                <canvas class="chart chart-line" chart-data="dataKelembaban" chart-options="options" chart-labels="labels" chart-colors="colorKelembaban"></canvas>
+                                <canvas id="hero-bar" class="chart chart-line" chart-data="dataKelembaban" chart-options="options" chart-labels="labels" chart-colors="colorKelembaban"></canvas>
                             </div>
                         </div>
                         <div class="col-md-5">                        
                             <a href="#" class="tile tile-info">
-                                {{showKel}} RH
+                                {{showH}} RH
                                 <p>Realtime Kelembaban</p>                            
                                 <div class="informer informer-default dir-tr"></div>
                             </a>                        

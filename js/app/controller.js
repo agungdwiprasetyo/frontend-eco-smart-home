@@ -35,59 +35,81 @@ contr.controller('DayaController', function ($scope) {
 
 contr.controller('PanelSuryaController', function ($scope, $interval) {
     $scope.pageClass = 'page-class';
+    var maximum = 300;
+    $scope.dataAmpere = [[]];
+    $scope.dataVolt = [[]];
+
+    $scope.labels = [];
     $scope.options = {
+      animation: {
+        duration: 0
+      },
+      elements: {
+        line: {
+          borderWidth: 3
+        },
+        point: {
+          radius: 0
+        }
+      },
+      legend: {
+        display: false
+      },
       scales: {
         xAxes: [{
-          display: false,
-          ticks: {
-            max: 125,
-            min: -125,
-            stepSize: 10
-          }
+          display: false
         }],
         yAxes: [{
-          display: false,
-          ticks: {
-            max: 125,
-            min: -125,
-            stepSize: 10
-          }
-        }]
+          display: true
+        }],
+        gridLines: {
+          display: false
+        }
+      },
+      tooltips: {
+        enabled: false
       }
     };
 
-    createChart();
-    $interval(createChart, 5000);
+    $interval(function () {
+      getLiveChartData();
+    }, 1000);
 
-    function createChart () {
-      $scope.data = [];
-      for (var i = 0; i < 50; i++) {
-        $scope.data.push([{
-          x: randomScalingFactor(),
-          y: randomScalingFactor(),
-          r: randomRadius()
-        }]);
+    function getLiveChartData () {
+      if ($scope.dataAmpere[0].length) {
+        $scope.labels = $scope.labels.slice(1);
+        $scope.dataAmpere[0] = $scope.dataAmpere[0].slice(1);
+        $scope.dataVolt[0] = $scope.dataVolt[0].slice(1);
+      }
+
+      while ($scope.dataAmpere[0].length < maximum) {
+        $scope.labels.push('');
+        var A = getRandomValue($scope.dataAmpere[0]);
+        var V = getRandomValue($scope.dataVolt[0]);
+        $scope.showA = A;
+        $scope.showV = V;
+        $scope.dataAmpere[0].push(A);
+        $scope.dataVolt[0].push(V);
       }
     }
-
-    function randomScalingFactor () {
-      return (Math.random() > 0.5 ? 1.0 : -1.0) * Math.round(Math.random() * 100);
-    }
-
-    function randomRadius () {
-      return Math.abs(randomScalingFactor()) / 4;
+    function getRandomValue(data) {
+        var l = data.length, previous = l ? data[l - 1] : 50;
+        var y = previous + Math.random() * 10 - 5;
+        return y < 0 ? 0 : y > 100 ? 100 : y;
     }
 });
 
 contr.controller('LingkunganController', function ($scope, $interval, socket) {
     $scope.pageClass = 'page-class';
-    $scope.labels = ['06.00', '07.00', '08.00', '09.00', '10.00', '11.00', '12.00'];
-    $scope.dataSuhu = [0,0,0,0,0,0,0,0];
-    $scope.dataKelembaban = [0,0,0,0,0,0,0,0];
 
+    var maximum = 60;
+    $scope.dataSuhu = [[]];
+    $scope.dataKelembaban = [[]];
+
+    $scope.labels = [];
     $scope.colorSuhu = [
       {
-        backgroundColor: 'rgba(150,159,177,0.2)',
+        backgroundColor: 'rgba(255,127,127,0.2)',
         pointBackgroundColor: 'rgba(148,159,177,1)',
         pointHoverBackgroundColor: 'rgba(148,159,177,1)',
         borderColor: 'rgba(148,159,177,1)',
@@ -97,7 +119,7 @@ contr.controller('LingkunganController', function ($scope, $interval, socket) {
     ];
     $scope.colorKelembaban = [
       {
-        backgroundColor: 'rgba(0,0,177,0.2)',
+        backgroundColor: 'rgba(127,255,127,0.4)',
         pointBackgroundColor: 'rgba(148,159,177,1)',
         pointHoverBackgroundColor: 'rgba(148,159,177,1)',
         borderColor: 'rgba(148,159,177,1)',
@@ -105,29 +127,71 @@ contr.controller('LingkunganController', function ($scope, $interval, socket) {
         pointHoverBorderColor: 'rgba(148,159,177,0.8)'
       }
     ];
-    $scope.options = { legend: { display: false } };
+
+    $scope.options = {
+      animation: {
+        duration: 0
+      },
+      elements: {
+        line: {
+          borderWidth: 2
+        },
+        point: {
+          radius: 0
+        }
+      },
+      legend: {
+        display: false
+      },
+      scales: {
+        xAxes: [{
+          display: false
+        }],
+        yAxes: [{
+          display: true
+        }],
+        gridLines: {
+          display: false
+        }
+      },
+      tooltips: {
+        enabled: false
+      }
+    };
+
+    $interval(function(){
+        while ($scope.dataSuhu[0].length < maximum) {
+            $scope.labels.push('');
+            var T = 0;
+            var H = 0;
+            $scope.showT = parseInt(T);
+            $scope.showH = parseInt(H);
+            $scope.dataSuhu[0].push(T);
+            $scope.dataKelembaban[0].push(H);
+          }
+    },10);
 
     // menunggu data secara realtime melalui socket.io
     socket.on('kendaliPerangkat', function (data) {
         console.log(data);
         // tampilkan data dari socket ke grafik kelembaban
-        $scope.dataKelembaban.shift();
-        $scope.dataKelembaban.push(data);
-        $scope.showKel = data;
+        mulai(data[0], data[1]);
     });
 
-    // sementara masih random
-    mulaiRandom();
-    $interval(mulaiRandom,2000);
-    function mulaiRandom(){
-        var x = (Math.random() > 0.5 ? 1.0 : 0.5) * Math.round(Math.random() * 100);
-        var y = (Math.random() > 0.5 ? 1.0 : 0.5) * Math.round(Math.random() * 50);
-        $scope.dataSuhu.shift();
-        $scope.dataSuhu.push(x);
-        $scope.showSuhu = x;
-        $scope.dataKelembaban.shift();
-        $scope.dataKelembaban.push(y);
-        $scope.showKel = y;
+    function mulai(T, H) {
+      if ($scope.dataSuhu[0].length) {
+        $scope.labels = $scope.labels.slice(1);
+        $scope.dataSuhu[0] = $scope.dataSuhu[0].slice(1);
+        $scope.dataKelembaban[0] = $scope.dataKelembaban[0].slice(1);
+      }
+
+      while ($scope.dataSuhu[0].length < maximum) {
+        $scope.labels.push('');
+        $scope.showT = parseInt(T);
+        $scope.showH = parseInt(H);
+        $scope.dataSuhu[0].push(T);
+        $scope.dataKelembaban[0].push(H);
+      }
     }
 });
 
@@ -135,7 +199,7 @@ contr.controller('LEDController', function($scope, $http, socket) {
     $scope.pageClass = 'page-class';
     $scope.dataPerangkat = {};
     $scope.status = {};
-    $http.get('http://agungdp.agri.web.id:2016/perangkat').success(function(data){
+    $http.get('http://192.168.0.16:2016/perangkat').success(function(data){
         console.log(data);
         $scope.dataPerangkat = data;
     });
@@ -151,7 +215,7 @@ contr.controller('LEDController', function($scope, $http, socket) {
         console.log($.param(sendData));
         $http({
             method  : 'PUT',
-            url     : 'http://agungdp.agri.web.id:2016/perangkat',
+            url     : 'http://192.168.0.16:2016/perangkat',
             data    : $.param(sendData),
             headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
         }).success(function(data){
@@ -284,3 +348,56 @@ contr.controller('KameraController', function($scope){
         video: null
     };
 });
+
+contr.controller('TicksCtrl', ['$scope', '$interval', function ($scope, $interval) {
+    var maximum = document.getElementById('container').clientWidth / 2 || 300;
+    $scope.data = [[]];
+    $scope.labels = [];
+    $scope.options = {
+      animation: {
+        duration: 0
+      },
+      elements: {
+        line: {
+          borderWidth: 0.5
+        },
+        point: {
+          radius: 0
+        }
+      },
+      legend: {
+        display: false
+      },
+      scales: {
+        xAxes: [{
+          display: false
+        }],
+        yAxes: [{
+          display: false
+        }],
+        gridLines: {
+          display: false
+        }
+      },
+      tooltips: {
+        enabled: false
+      }
+    };
+
+    // Update the dataset at 25FPS for a smoothly-animating chart
+    $interval(function () {
+      getLiveChartData();
+    }, 40);
+
+    function getLiveChartData () {
+      if ($scope.data[0].length) {
+        $scope.labels = $scope.labels.slice(1);
+        $scope.data[0] = $scope.data[0].slice(1);
+      }
+
+      while ($scope.data[0].length < maximum) {
+        $scope.labels.push('');
+        $scope.data[0].push(getRandomValue($scope.data[0]));
+      }
+    }
+  }]);
