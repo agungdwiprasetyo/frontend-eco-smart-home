@@ -174,7 +174,7 @@ contr.controller('LingkunganController', function ($scope, $interval, socket) {
     // menunggu data secara realtime melalui socket.io
     socket.on('kendaliPerangkat', function (data) {
         console.log(data);
-        // tampilkan data dari socket ke grafik kelembaban
+        // tampilkan data dari socket ke grafik pada halaman monitoring lingkungan
         mulai(data[0], data[1]);
     });
 
@@ -199,7 +199,7 @@ contr.controller('LEDController', function($scope, $http, socket) {
     $scope.pageClass = 'page-class';
     $scope.dataPerangkat = {};
     $scope.status = {};
-    $http.get('http://192.168.0.16:2016/perangkat').success(function(data){
+    $http.get('http://agungdp.agri.web.id:2016/perangkat').success(function(data){
         console.log(data);
         $scope.dataPerangkat = data;
     });
@@ -215,7 +215,7 @@ contr.controller('LEDController', function($scope, $http, socket) {
         console.log($.param(sendData));
         $http({
             method  : 'PUT',
-            url     : 'http://192.168.0.16:2016/perangkat',
+            url     : 'http://agungdp.agri.web.id:2016/perangkat',
             data    : $.param(sendData),
             headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
         }).success(function(data){
