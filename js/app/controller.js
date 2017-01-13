@@ -172,7 +172,7 @@ contr.controller('LingkunganController', function ($scope, $interval, socket) {
     },10);
 
     // menunggu data secara realtime melalui socket.io
-    socket.on('kendaliPerangkat', function (data) {
+    socket.on('monitoringPerangkat', function (data) {
         console.log(data);
         // tampilkan data dari socket ke grafik pada halaman monitoring lingkungan
         mulai(data[0], data[1]);
