@@ -9,6 +9,12 @@
     <div class="page-content-wrap">
             <div class="row">
                 <div class="col-md-12">
+                    <div ng-if="!statusPerangkat">
+                        <div class="alert alert-danger" role="alert">
+                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <strong>Warning!</strong> Perangkat Raspberry Pi dan Arduino sedang tidak diaktifkan.
+                        </div>
+                    </div>
                     <div class="col-md-6">
                         <div class="panel panel-default">
                             <div class="panel-heading">

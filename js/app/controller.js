@@ -102,6 +102,7 @@ contr.controller('PanelSuryaController', function ($scope, $interval) {
 contr.controller('LingkunganController', function ($scope, $interval, socket) {
     $scope.pageClass = 'page-class';
 
+    $scope.statusPerangkat = false;
     var maximum = 60;
     $scope.dataSuhu = [[]];
     $scope.dataKelembaban = [[]];
@@ -171,8 +172,9 @@ contr.controller('LingkunganController', function ($scope, $interval, socket) {
           }
     },10);
 
-    // menunggu data secara realtime melalui socket.io
+    // menunggu data secara realtime melalui socket.io dari server
     socket.on('monitoringPerangkat', function (data) {
+        $scope.statusPerangkat = true;
         console.log(data);
         // tampilkan data dari socket ke grafik pada halaman monitoring lingkungan
         mulai(data[0], data[1]);
@@ -197,6 +199,7 @@ contr.controller('LingkunganController', function ($scope, $interval, socket) {
 
 contr.controller('LEDController', function($scope, $http, socket) {
     $scope.pageClass = 'page-class';
+
     $scope.dataPerangkat = {};
     $scope.status = {};
     $http.get('http://agungdp.agri.web.id:2016/perangkat').success(function(data){
