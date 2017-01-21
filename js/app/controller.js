@@ -103,7 +103,7 @@ contr.controller('LingkunganController', function ($scope, $interval, socket) {
     $scope.pageClass = 'page-class';
 
     $scope.statusPerangkat = false;
-    var maximum = 60;
+    var maximum = 120;
     $scope.dataSuhu = [[]];
     $scope.dataKelembaban = [[]];
 
